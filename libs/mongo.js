@@ -26,12 +26,14 @@ var Person = new Schema({
 
 var Debit = new Schema({
 	name : {type : String, required : true},
-	summ : {type : Number, required : true}
+	sum : {type : String, required : true},
+	date :{type : Date, default : Date.now}
 });
 
 var Credit = new Schema({
 	name : {type : String, required : true},
-	summ : {type : Number, required : true}
+	sum : {type : Number, required : true},
+	date : {type : Date, default: Date.now}
 });
 
 
@@ -39,6 +41,14 @@ var Credit = new Schema({
 //VALIDATING
 Person.path('phone').validate(function(v){
 	return v.length > 5 && v.length < 20;
+});
+
+Debit.path('sum').validate(function (v) {
+	return v > 0.0 && v < 10000000.0;
+});
+
+Credit.path('sum').validate(function(v){
+	return v > 0.0 && v < 10000000.0;
 });
 
 //EXPORT
