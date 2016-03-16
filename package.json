@@ -22,7 +22,6 @@
     "node" : "0.10.25",
     "npm": "2.1.x"
   },
-  "cacheDirectories": ["node_modules"],
   "repository": {
     "type": "git",
     "url": "https://github.com/ovchinnikov94/RestAPI.git"
