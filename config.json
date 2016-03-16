@@ -1,6 +1,6 @@
 {
 	"port" : 8080,
 	"mongoose" : {
-		"uri" : "mongodb://localhost/restdb"
+		"uri" : "mongodb://root:root48@ds015879.mlab.com:15879/restapi-1854"
 	}
 }
