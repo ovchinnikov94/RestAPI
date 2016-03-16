@@ -188,5 +188,5 @@ app.use(function(req, res, next){
 
 //START SERVER
 app.listen(config.get('port'), function() {
-	console.log('Express server listening port 1337');
+	console.log('Express server listening port ' + config.get('port');
 });
