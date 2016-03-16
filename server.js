@@ -8,6 +8,7 @@ var morgan = require('morgan');
 var methodOverride = require('method-override');
 var log = require('./libs/log')(module);
 var config = require('./libs/config');
+var mongoose = require('mongoose');
 
 var app = express();
 
@@ -148,6 +149,26 @@ app.post('/credit', function (req, res) {
     });
 });
 
+app.delete('/credit/:name', function (req, res){
+	if (req.params.name){
+		CreditModel.find({"_id" : mongoose.Types.ObjectId(req.params.name)}).remove().exec(function(err){
+			if (!err) {
+				log.info('Deleted credit %s', req.params.name);
+				return res.json({status : 'OK'});
+			}
+			else {
+				res.statusCode = 500;
+				log.error('Internal error %s', err.message);
+				return res.json({error : 'Server error!'});
+			}
+		});
+	}
+});
+
+app.get('/ErrorExample', function(req, res, next){
+	next(new Error('Random error!'));
+});
+
 // ERRORS
 app.use(function(req, res, next) {
 	res.status(404);
@@ -163,9 +184,6 @@ app.use(function(req, res, next){
 	return;
 });
 
-app.get('/ErrorExample', function(req, res, next){
-	next(new Error('Random error!'));
-});
 
 
 //START SERVER
