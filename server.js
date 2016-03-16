@@ -187,6 +187,6 @@ app.use(function(req, res, next){
 
 
 //START SERVER
-app.listen(config.get('port'), function() {
+app.listen(process.env.PORT || config.get('port'), function() {
 	console.log('Express server listening port ' + config.get('port'));
 });
